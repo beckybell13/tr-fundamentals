@@ -1,0 +1,90 @@
+<html>
+	<body style="margin: 0">
+		<canvas id="myCanvas"></canvas>
+		<script>
+
+			// Adapted from codepen by LUMENS
+			// https://codepen.io/LUMENS/pen/QmXVvy
+
+			// Get the canvas element in the HTML
+			var canvas = document.getElementById('myCanvas');
+
+			// Set the dimenions of our canvas to be the size of the browser window
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+
+			// Get the canvas context (this lets us draw on the screen!)
+			// You can think of it as our paintbrush
+			var context = canvas.getContext('2d');
+
+			// Create a rectangle the size of the canvas
+			// and fill with the default color (black)
+			context.fillRect(0, 0, canvas.width, canvas.height);
+
+			// Change our fill color to green
+		 	context.fillStyle = "#008a25";
+
+			// Set font and size
+			context.font = "24px Consolas";
+
+			var fontSize = 24;
+
+			var rowNumbers = [];
+
+			for (var i = 0; i < 100; i++) {
+
+				rowNumbers[i] = 1;
+
+			}
+
+			function drawRow() {
+
+				for (var column = 0; column < 100; column++) {
+
+					var xPosition = column * fontSize;
+					var yPosition = rowNumbers[column] * fontSize;
+
+					// Make list of available numbers to choose from
+					var numbers = ['1', '0'];
+
+					var randomPosition = Math.floor(Math.random()*numbers.length);
+					var text = numbers[randomPosition];
+
+					context.fillText(text, xPosition, yPosition);
+
+					// If we've passed the bottom of the canvas, reset the row ~5% of the time
+					if ((rowNumbers[column] * fontSize) > canvas.height && Math.random()> 0.95) {
+						rowNumbers[column] = 0;
+					}
+
+					rowNumbers[column]++;
+
+				}
+
+			}
+
+			function clearRow() {
+
+				// Set our paintbrush color to black (but slightly see-through)
+				context.fillStyle = 'rgba(0, 0, 0, 0.1)';
+
+				// Paint entire canvas that color
+				context.fillRect(0, 0, canvas.width, canvas.height);
+
+				// Don't forget to change paintbrush color back to green!
+				context.fillStyle = "#008a25";
+
+			}
+
+			function draw() {
+
+				drawRow();
+				clearRow();
+
+			}
+
+			setInterval(draw, 100);
+
+		</script>
+	</body>
+</html>

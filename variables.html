@@ -1,0 +1,34 @@
+<html>
+	<body style="margin: 0">
+		<canvas id="myCanvas"></canvas>
+		<script>
+
+			// Get the canvas element in the HTML
+			var canvas = document.getElementById('myCanvas');
+
+			// Set the dimenions of our canvas to be the size of the browser window
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+
+			// Get the canvas context (this lets us draw on the screen!)
+			// You can think of it as our paintbrush
+			var context = canvas.getContext('2d');
+
+			// Create a rectangle the size of the canvas
+			// and fill with the default color (black)
+			context.fillRect(0, 0, canvas.width, canvas.height);
+
+			// Change our fill color to green
+		 	context.fillStyle = "#008a25";
+
+			// Set font and size
+			context.font = "32px Consolas";
+			
+			// Draw text on canvas at 0px to the left and 32px down
+			context.fillText('Tech, Rebalanced 2019', 0, 32);
+			context.fillText('Tech, Rebalanced 2019', 0, 64);
+			context.fillText('Tech, Rebalanced 2019', 0, 96);
+
+		</script>
+	</body>
+</html>
